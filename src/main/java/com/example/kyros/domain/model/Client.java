@@ -19,17 +19,17 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @NotBlank
-    @Size(max = 255)
+    @NotBlank(message = "{name.not.blank}")
+    @Size(max = 255, message = "{name.size}")
     private String name;
-    @NotBlank
-    @Size(max = 11)
+    @NotBlank(message = "{cpf.not.blank}")
+    @Size(max = 11, message = "{cpf.size}")
     private String cpf;
-    @NotBlank
-    @Size(max = 255)
+    @NotBlank(message = "{email.not.blank}")
+    @Size(max = 255, message = "{email.size}")
     private String email;
-    @NotBlank
-    @Size(max = 11)
+    @NotBlank(message = "{phone.not.blank}")
+    @Size(max = 11, message = "{phone.size}")
     private String phone;
     @NotNull
     private LocalDate birthday;
