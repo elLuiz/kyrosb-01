@@ -30,16 +30,14 @@ public class ClientService {
 
     public ClientResponseModel createClient(Client client){
         clientInsertionService.verifyClientInput(client);
-        Client clientResponse = clientRepository.save(client);
-        return modelMapperConverter.convertToClientResponseModel(clientResponse);
+        return getClientResponseModel(client);
     }
 
     public ClientResponseModel updateClient(ClientUpdateRequestModel client, Long clientId){
         if(clientUpdateService.isClientSignedUp(clientId)){
             clientUpdateService.verifyClientInput(client);
             Client clientUpdate = clientUpdateService.updateClient(client, clientId);
-            clientUpdate = clientRepository.save(clientUpdate);
-            return modelMapperConverter.convertToClientResponseModel(clientUpdate);
+            return getClientResponseModel(clientUpdate);
         }else
             throw new ClientNotFoundException("Cliente não encontrado", 404);
     }
@@ -49,5 +47,10 @@ public class ClientService {
             clientRepository.deleteById(id);
         else
             throw new ClientNotFoundException("Cliente não encontrado", 404);
+    }
+
+    private ClientResponseModel getClientResponseModel(Client client) {
+        Client clientResponse = clientRepository.save(client);
+        return modelMapperConverter.convertToClientResponseModel(clientResponse);
     }
 }
