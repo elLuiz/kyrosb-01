@@ -1,5 +1,7 @@
 package com.example.kyros.api.controller;
 
+import com.example.kyros.api.model.request.ClientUpdateRequestModel;
+import com.example.kyros.api.model.response.ClientResponseModel;
 import com.example.kyros.domain.model.Client;
 import com.example.kyros.domain.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +17,17 @@ public class ClientController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Client createClient(@Valid @RequestBody Client client){
+    public ClientResponseModel createClient(@Valid @RequestBody Client client){
         return clientService.createClient(client);
     }
 
     @DeleteMapping("/{clientId}")
     public void deleteClient(@PathVariable Long clientId){
         clientService.deleteClient(clientId);
+    }
+
+    @PutMapping("/{clientId}")
+    public ClientResponseModel updateClient(@PathVariable Long clientId, @RequestBody ClientUpdateRequestModel clientUpdate){
+        return clientService.updateClient(clientUpdate, clientId);
     }
 }

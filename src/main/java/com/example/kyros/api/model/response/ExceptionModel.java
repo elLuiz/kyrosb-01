@@ -1,4 +1,4 @@
-package com.example.kyros.api.model;
+package com.example.kyros.api.model.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;

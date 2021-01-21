@@ -1,11 +1,9 @@
 package com.example.kyros.domain.service.utils.input;
 
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Service
-public abstract class InputValidator {
-
+public class InputValidator {
     public boolean isNCharactersLong(String input, int length){
         return input.length() == length;
     }
@@ -13,6 +11,4 @@ public abstract class InputValidator {
     public boolean inputMatches(String input, String regex){
         return input.matches(regex);
     }
-
-    public abstract boolean test(Object inputTest);
 }

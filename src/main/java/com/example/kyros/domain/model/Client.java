@@ -1,5 +1,6 @@
 package com.example.kyros.domain.model;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,6 +16,7 @@ import java.time.LocalDate;
 @Setter
 @Getter
 @Entity
+@EqualsAndHashCode
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

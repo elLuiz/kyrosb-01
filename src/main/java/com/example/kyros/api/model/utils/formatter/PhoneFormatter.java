@@ -1,6 +1,8 @@
-package com.example.kyros.api.model.util;
+package com.example.kyros.api.model.utils.formatter;
 
-public class PhoneFormatter extends ResponseFormatter{
+import com.example.kyros.api.model.utils.formatter.ResponseFormatter;
+
+public class PhoneFormatter implements ResponseFormatter {
     @Override
     public String formatInput(String phone) {
         String regex = "(\\d{2})(\\d+)(\\d{4})";

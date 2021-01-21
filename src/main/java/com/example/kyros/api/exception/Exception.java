@@ -1,6 +1,6 @@
 package com.example.kyros.api.exception;
 
-import com.example.kyros.api.model.ExceptionModel;
+import com.example.kyros.api.model.response.ExceptionModel;
 import com.example.kyros.domain.exception.ClientException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -14,7 +14,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
 @ControllerAdvice
 public class Exception extends ResponseEntityExceptionHandler {

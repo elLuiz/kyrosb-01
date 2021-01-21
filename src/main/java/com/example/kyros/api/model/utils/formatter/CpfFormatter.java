@@ -1,6 +1,6 @@
-package com.example.kyros.api.model.util;
+package com.example.kyros.api.model.utils.formatter;
 
-public class CpfFormatter extends ResponseFormatter{
+public class CpfFormatter implements ResponseFormatter {
     @Override
     public String formatInput(String cpf) {
         String regex = "(\\d{3})(\\d{3})(\\d{3})(\\d{2})";
