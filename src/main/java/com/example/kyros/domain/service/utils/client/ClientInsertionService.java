@@ -1,26 +1,37 @@
 package com.example.kyros.domain.service.utils.client;
 
+import com.example.kyros.domain.exception.dao.CpfAlreadyExistsException;
+import com.example.kyros.domain.exception.dao.EmailAlreadyExistsException;
 import com.example.kyros.domain.model.Client;
-import com.example.kyros.domain.service.utils.input.DateValidator;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 @Component
+@Setter
 public class ClientInsertionService extends ClientVerificationService{
-    @Autowired
-    private DateValidator dateValidator;
+    private Client client;
 
     @Override
     public void verifyClientInput(Client client) {
+        setClient(client);
+        testUserInput();
+        verifyIfDataAlreadyExists();
+    }
+
+    protected void testUserInput(){
         String email = client.getEmail();
         String cpf = client.getCpf();
         String phone = client.getPhone();
-        String birthday = client.getBirthday().toString();
 
         emailValidator.test(email);
         phoneValidator.test(phone);
         cpfValidator.test(cpf);
-        dateValidator.test(birthday);
+    }
+
+    protected void verifyIfDataAlreadyExists(){
+        if(isEmailSignedUp(client.getEmail()))
+            throw new EmailAlreadyExistsException("O email já está em uso.", 400);
+        if(isCPFSignedUp(client.getCpf()))
+            throw new CpfAlreadyExistsException("O cpf já está cadastrado", 400);
     }
 }

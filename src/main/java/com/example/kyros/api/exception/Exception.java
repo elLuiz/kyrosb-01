@@ -2,6 +2,7 @@ package com.example.kyros.api.exception;
 
 import com.example.kyros.api.model.response.ExceptionModel;
 import com.example.kyros.domain.exception.ClientException;
+import com.example.kyros.domain.exception.invalidinput.DateInvalidFormat;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,12 @@ public class Exception extends ResponseEntityExceptionHandler {
         HttpStatus status = HttpStatus.resolve(clientException.getCode());
         ExceptionModel exceptionModel = new ExceptionModel(status.value(), clientException.getMessage(), OffsetDateTime.now());
         return handleExceptionInternal(clientException, exceptionModel, new HttpHeaders(), status, webRequest);
+    }
+
+    @ExceptionHandler(DateInvalidFormat.class)
+    public ResponseEntity<Object> handleDateInvalidFormatException(DateInvalidFormat dateInvalidFormat, WebRequest webRequest){
+        ExceptionModel exceptionModel = new ExceptionModel(HttpStatus.UNPROCESSABLE_ENTITY.value(), dateInvalidFormat.getMessage(), OffsetDateTime.now());
+        return handleExceptionInternal(dateInvalidFormat, exceptionModel, new HttpHeaders(), HttpStatus.UNPROCESSABLE_ENTITY, webRequest);
     }
 
     @Override

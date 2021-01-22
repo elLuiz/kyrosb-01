@@ -15,6 +15,11 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
+    @GetMapping
+    public String displayClient(){
+        return "Hello, world";
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ClientResponseModel createClient(@Valid @RequestBody Client client){
@@ -22,6 +27,7 @@ public class ClientController {
     }
 
     @DeleteMapping("/{clientId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteClient(@PathVariable Long clientId){
         clientService.deleteClient(clientId);
     }

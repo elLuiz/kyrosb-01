@@ -53,4 +53,6 @@ public abstract class ClientVerificationService {
 
     public void verifyClientInput(Client client){};
     public void verifyClientInput(ClientUpdateRequestModel clientUpdateRequestModel){};
+    protected abstract void verifyIfDataAlreadyExists();
+    protected abstract void testUserInput();
 }

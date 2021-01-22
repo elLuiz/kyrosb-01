@@ -8,6 +8,12 @@ import java.util.function.Predicate;
 @Component
 public class PhoneValidator extends InputValidator implements Predicate<String> {
     private final static String REGEX = "[0-9]+";
+
+    @Override
+    public boolean isNCharactersLong(String input, int length) {
+        return input.length() >= 10;
+    }
+
     @Override
     public boolean test(String phone) {
         if(!inputMatches(phone, REGEX))

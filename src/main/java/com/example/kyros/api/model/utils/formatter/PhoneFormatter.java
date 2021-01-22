@@ -1,7 +1,5 @@
 package com.example.kyros.api.model.utils.formatter;
 
-import com.example.kyros.api.model.utils.formatter.ResponseFormatter;
-
 public class PhoneFormatter implements ResponseFormatter {
     @Override
     public String formatInput(String phone) {

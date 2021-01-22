@@ -1,9 +1,12 @@
 package com.example.kyros.domain.exception.invalidinput;
 
-import com.example.kyros.domain.exception.ClientException;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
-public class DateInvalidFormat extends ClientException {
-    public DateInvalidFormat(String message, int code) {
-        super(message, code);
+@ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+public class DateInvalidFormat extends JsonProcessingException {
+    public DateInvalidFormat(String message) {
+        super(message);
     }
 }

@@ -8,12 +8,10 @@ import com.example.kyros.domain.model.Client;
 import com.example.kyros.domain.repository.ClientRepository;
 import com.example.kyros.domain.service.utils.client.ClientInsertionService;
 import com.example.kyros.domain.service.utils.client.ClientUpdateService;
-import com.example.kyros.domain.service.utils.client.ClientVerificationService;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Setter
