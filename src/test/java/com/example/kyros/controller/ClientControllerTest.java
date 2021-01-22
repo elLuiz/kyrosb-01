@@ -1,49 +1,27 @@
 package com.example.kyros.controller;
 
 import com.example.kyros.KyrosApplication;
-import com.example.kyros.api.controller.ClientController;
 import com.example.kyros.api.model.request.ClientUpdateRequestModel;
 import com.example.kyros.api.model.response.ClientResponseModel;
-import com.example.kyros.api.model.utils.converter.ModelMapperConverter;
 import com.example.kyros.domain.model.Client;
-import com.example.kyros.domain.service.ClientService;
-import com.example.kyros.domain.service.utils.client.ClientUpdateService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Setter;
-import org.junit.Test;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
-import org.junit.runner.RunWith;
-import org.mockito.Mockito;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.*;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import static org.assertj.core.internal.bytebuddy.matcher.ElementMatchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-
-@RunWith(SpringRunner.class)
 @SpringBootTest(classes = KyrosApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Setter
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ClientControllerTest {
     @Autowired
     private TestRestTemplate restTemplate;
@@ -60,13 +38,8 @@ public class ClientControllerTest {
 
     @Test
     @Order(1)
-    public void contextLoads(){
-
-    }
-
-    @Test
-    @Order(2)
     public void createNewClient_AndReturn201(){
+        System.out.println("Created first " + LocalDateTime.now());
         Client luiz = createClientObject();
         ResponseEntity<ClientResponseModel> response = restTemplate.postForEntity(getRootURL(), luiz, ClientResponseModel.class);
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
@@ -77,7 +50,7 @@ public class ClientControllerTest {
     }
 
     @Test
-    @Order(3)
+    @Order(2)
     public void createNewClient_Returns400(){
         Client client = new Client();
         client.setName("John");
@@ -89,16 +62,20 @@ public class ClientControllerTest {
     }
 
     @Test
-    @Order(4)
+    @Order(3)
     public void updateExistingClient_Returns200(){
+        System.out.println("Created 4th " + LocalDateTime.now());
+
         ResponseEntity<ClientResponseModel> response = createPutRequest();
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals("384.928.555-21", response.getBody().getCpf());
     }
 
     @Test
-    @Order(5)
+    @Order(4)
     public void deleteExistingClient_Returns204(){
+        System.out.println("Created 5th" + LocalDateTime.now());
+
         ResponseEntity<Object> response = createDeleteRequest();
         assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
     }
