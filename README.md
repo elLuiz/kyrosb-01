@@ -1,5 +1,5 @@
 # kyrosb-01
-Cliente API
+Desenvolvimento de uma API para gerenciamento de dados de clientes.
 
 ## Como funciona
 
