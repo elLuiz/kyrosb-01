@@ -1,4 +1,4 @@
-package com.example.kyros.api.model.request;
+package com.example.kyros.api.dto.request;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

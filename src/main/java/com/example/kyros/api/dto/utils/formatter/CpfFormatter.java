@@ -1,4 +1,4 @@
-package com.example.kyros.api.model.utils.formatter;
+package com.example.kyros.api.dto.utils.formatter;
 
 public class CpfFormatter implements ResponseFormatter {
     @Override

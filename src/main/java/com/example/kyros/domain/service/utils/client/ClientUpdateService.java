@@ -1,6 +1,6 @@
 package com.example.kyros.domain.service.utils.client;
 
-import com.example.kyros.api.model.request.ClientUpdateRequestModel;
+import com.example.kyros.api.dto.request.ClientUpdateRequestModel;
 import com.example.kyros.domain.exception.ClientException;
 import com.example.kyros.domain.exception.dao.CpfAlreadyExistsException;
 import com.example.kyros.domain.exception.dao.EmailAlreadyExistsException;

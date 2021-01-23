@@ -1,8 +1,8 @@
 package com.example.kyros.domain.service;
 
-import com.example.kyros.api.model.request.ClientUpdateRequestModel;
-import com.example.kyros.api.model.response.ClientResponseModel;
-import com.example.kyros.api.model.utils.converter.ModelMapperConverter;
+import com.example.kyros.api.dto.request.ClientUpdateRequestModel;
+import com.example.kyros.api.dto.response.ClientResponseModel;
+import com.example.kyros.api.dto.utils.converter.ModelMapperConverter;
 import com.example.kyros.domain.exception.dao.ClientNotFoundException;
 import com.example.kyros.domain.model.Client;
 import com.example.kyros.domain.repository.ClientRepository;

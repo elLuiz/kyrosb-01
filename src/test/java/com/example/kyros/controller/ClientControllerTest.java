@@ -1,8 +1,8 @@
 package com.example.kyros.controller;
 
 import com.example.kyros.KyrosApplication;
-import com.example.kyros.api.model.request.ClientUpdateRequestModel;
-import com.example.kyros.api.model.response.ClientResponseModel;
+import com.example.kyros.api.dto.request.ClientUpdateRequestModel;
+import com.example.kyros.api.dto.response.ClientResponseModel;
 import com.example.kyros.domain.model.Client;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Setter;

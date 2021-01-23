@@ -1,7 +1,7 @@
 package com.example.kyros.api.controller;
 
-import com.example.kyros.api.model.request.ClientUpdateRequestModel;
-import com.example.kyros.api.model.response.ClientResponseModel;
+import com.example.kyros.api.dto.request.ClientUpdateRequestModel;
+import com.example.kyros.api.dto.response.ClientResponseModel;
 import com.example.kyros.domain.model.Client;
 import com.example.kyros.domain.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;

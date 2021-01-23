@@ -1,6 +1,6 @@
 package com.example.kyros.api.exception;
 
-import com.example.kyros.api.model.response.ExceptionModel;
+import com.example.kyros.api.dto.response.ExceptionModel;
 import com.example.kyros.domain.exception.ClientException;
 import com.example.kyros.domain.exception.invalidinput.DateInvalidFormat;
 import org.springframework.http.HttpHeaders;

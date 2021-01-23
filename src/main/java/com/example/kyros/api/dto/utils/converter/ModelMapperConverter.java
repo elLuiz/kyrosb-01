@@ -1,14 +1,13 @@
-package com.example.kyros.api.model.utils.converter;
+package com.example.kyros.api.dto.utils.converter;
 
-import com.example.kyros.api.model.response.ClientResponseModel;
-import com.example.kyros.api.model.utils.formatter.CpfFormatter;
-import com.example.kyros.api.model.utils.formatter.PhoneFormatter;
-import com.example.kyros.api.model.utils.formatter.ResponseFormatter;
+import com.example.kyros.api.dto.response.ClientResponseModel;
+import com.example.kyros.api.dto.utils.formatter.CpfFormatter;
+import com.example.kyros.api.dto.utils.formatter.PhoneFormatter;
+import com.example.kyros.api.dto.utils.formatter.ResponseFormatter;
 import com.example.kyros.domain.model.Client;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 @Component
 public class ModelMapperConverter {

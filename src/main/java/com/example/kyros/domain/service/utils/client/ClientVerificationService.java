@@ -1,6 +1,6 @@
 package com.example.kyros.domain.service.utils.client;
 
-import com.example.kyros.api.model.request.ClientUpdateRequestModel;
+import com.example.kyros.api.dto.request.ClientUpdateRequestModel;
 import com.example.kyros.domain.model.Client;
 import com.example.kyros.domain.repository.ClientRepository;
 import com.example.kyros.domain.service.utils.input.CpfValidator;

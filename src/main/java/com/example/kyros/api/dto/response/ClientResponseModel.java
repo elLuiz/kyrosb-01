@@ -1,4 +1,4 @@
-package com.example.kyros.api.model.response;
+package com.example.kyros.api.dto.response;
 
 import lombok.Getter;
 import lombok.Setter;
