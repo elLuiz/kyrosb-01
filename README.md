@@ -30,6 +30,6 @@ Para o desenvolvimento do projeto, foi utilizado o Spring Boot. Portanto, há du
 Os testes encontram-se no diretório: src/test/java/com.example.kyros/controller/ClientControllerTest
 
 - Terminal
-> mvn -Dtest=ClientControllerTest tes
+> mvn -Dtest=ClientControllerTest test
 - IDE
 > Shift + F10 ou botão direito em ClientControllerTest -> Run ClientControllerTest
