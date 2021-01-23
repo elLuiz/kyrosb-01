@@ -32,50 +32,47 @@ public class ClientUpdateService extends ClientVerificationService{
 
     @Override
     protected void testUserInput() {
-        String email = clientUpdateRequestModel.getEmail();
         String cpf = clientUpdateRequestModel.getCpf();
         String phone = clientUpdateRequestModel.getPhone();
 
-        if(!isFieldEmpty(email))
-            emailValidator.test(email);
-        if(!isFieldEmpty(cpf))
+        if(!inputValidator.isFieldEmpty(cpf))
             cpfValidator.test(cpf);
-        if(!isFieldEmpty(phone))
+        if(!inputValidator.isFieldEmpty(phone))
             phoneValidator.test(phone);
     }
 
     @Override
     protected void verifyIfDataAlreadyExists() {
-        if(!isFieldEmpty(clientUpdateRequestModel.getEmail())){
+        if(!inputValidator.isFieldEmpty(clientUpdateRequestModel.getEmail())){
             if(isEmailSignedUp(clientUpdateRequestModel.getEmail()))
                 throw new EmailAlreadyExistsException("O email já está em uso.", 400);
         }
 
-        if(!isFieldEmpty(clientUpdateRequestModel.getCpf())){
+        if(!inputValidator.isFieldEmpty(clientUpdateRequestModel.getCpf())){
             if(isCPFSignedUp(clientUpdateRequestModel.getCpf()))
                 throw new CpfAlreadyExistsException("O cpf já está cadastrado", 400);
         }
     }
 
     private void updateExistingClientObject(Client client) {
-        if(!isFieldEmpty(clientUpdateRequestModel.getEmail()))
+        if(!inputValidator.isFieldEmpty(clientUpdateRequestModel.getEmail()))
             client.setEmail(clientUpdateRequestModel.getEmail());
 
-        if(!isFieldEmpty(clientUpdateRequestModel.getCpf()))
+        if(!inputValidator.isFieldEmpty(clientUpdateRequestModel.getCpf()))
             client.setCpf(clientUpdateRequestModel.getCpf());
 
-        if(!isFieldEmpty(clientUpdateRequestModel.getPhone()))
+        if(!inputValidator.isFieldEmpty(clientUpdateRequestModel.getPhone()))
             client.setPhone(clientUpdateRequestModel.getPhone());
     }
 
     private void isValueDifferent(ClientUpdateRequestModel clientRequest, Client client) {
-        if(isValueEqual(client.getEmail(), clientRequest.getEmail()))
+        if(inputValidator.isValueEqual(client.getEmail(), clientRequest.getEmail()))
             throw new ClientException("O email deve ser diferente do registrado.", 400);
 
-        if(isValueEqual(client.getCpf(), clientRequest.getCpf()))
+        if(inputValidator.isValueEqual(client.getCpf(), clientRequest.getCpf()))
             throw new ClientException("O nº cpf deve ser diferente do registrado no Banco de dados", 400);
 
-        if(isValueEqual(client.getPhone(), clientRequest.getPhone()))
+        if(inputValidator.isValueEqual(client.getPhone(), clientRequest.getPhone()))
             throw new ClientException("O nº de telefone deve ser diferente do registrado", 400);
     }
 }

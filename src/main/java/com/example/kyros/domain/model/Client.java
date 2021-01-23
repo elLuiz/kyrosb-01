@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -27,6 +28,7 @@ public class Client {
     private String cpf;
     @NotBlank(message = "{email.not.blank}")
     @Size(max = 255, message = "{email.size}")
+    @Email(message = "{email.invalid.format}")
     private String email;
     @NotBlank(message = "{phone.not.blank}")
     @Size(max = 11, message = "{phone.size}")

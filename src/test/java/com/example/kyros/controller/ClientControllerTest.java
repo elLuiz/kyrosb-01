@@ -81,6 +81,34 @@ public class ClientControllerTest {
 
     @Test
     @Order(4)
+    public void post_WithInvalidEmail_Returns400(){
+        Client client = new Client();
+        client.setName("Adriano Imperador");
+        client.setEmail("imperador.adriano@-gmail.com");
+        client.setPhone("4323129121");
+        client.setCpf("81218421211");
+        client.setBirthday(LocalDate.parse("1999-05-12"));
+        ResponseEntity<ClientResponseModel> response = createPostRequest(client);
+
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+    }
+
+    @Test
+    @Order(5)
+    public void post_WithInvalidCPF_Returns400(){
+        Client client = new Client();
+        client.setName("Alice");
+        client.setEmail("alice@gmail.com");
+        client.setPhone("5323129121");
+        client.setCpf("1121842121a");
+        client.setBirthday(LocalDate.parse("1999-05-14"));
+        ResponseEntity<ClientResponseModel> response = createPostRequest(client);
+
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+    }
+
+    @Test
+    @Order(6)
     public void update_ExistingClient_Returns200(){
         ClientUpdateRequestModel clientUpdateRequestModel = new ClientUpdateRequestModel();
         clientUpdateRequestModel.setCpf("38492855521");
@@ -91,7 +119,7 @@ public class ClientControllerTest {
     }
 
     @Test
-    @Order(5)
+    @Order(7)
     public void update_Non_ExistingClient_Returns404(){
         ClientUpdateRequestModel clientUpdateRequestModel = new ClientUpdateRequestModel();
         clientUpdateRequestModel.setCpf("38492855521");
@@ -101,14 +129,14 @@ public class ClientControllerTest {
     }
 
     @Test
-    @Order(6)
+    @Order(8)
     public void deleteExistingClient_Returns204(){
         ResponseEntity<Object> response = createDeleteRequest(1);
         assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
     }
 
     @Test
-    @Order(7)
+    @Order(9)
     public void detele_Non_ExistingCLient_Returns404(){
         ResponseEntity<Object> response = createDeleteRequest(10);
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());

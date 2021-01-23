@@ -19,13 +19,11 @@ public class ClientInsertionService extends ClientVerificationService{
     }
 
     protected void testUserInput(){
-        String email = client.getEmail();
         String cpf = client.getCpf();
         String phone = client.getPhone();
 
-        emailValidator.test(email);
-        phoneValidator.test(phone);
         cpfValidator.test(cpf);
+        phoneValidator.test(phone);
     }
 
     protected void verifyIfDataAlreadyExists(){

@@ -33,7 +33,7 @@ public class ClientController {
     }
 
     @PutMapping("/{clientId}")
-    public ClientResponseModel updateClient(@PathVariable Long clientId, @RequestBody ClientUpdateRequestModel clientUpdate){
+    public ClientResponseModel updateClient(@PathVariable Long clientId, @Valid @RequestBody ClientUpdateRequestModel clientUpdate){
         return clientService.updateClient(clientUpdate, clientId);
     }
 }
