@@ -16,7 +16,6 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(classes = KyrosApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -38,10 +37,15 @@ public class ClientControllerTest {
 
     @Test
     @Order(1)
-    public void createNewClient_AndReturn201(){
-        System.out.println("Created first " + LocalDateTime.now());
-        Client luiz = createClientObject();
-        ResponseEntity<ClientResponseModel> response = restTemplate.postForEntity(getRootURL(), luiz, ClientResponseModel.class);
+    public void post_NewClient_AndReturn201(){
+        Client client = new Client();
+        client.setName("Luiz");
+        client.setEmail("luizin@gmail.com");
+        client.setPhone("9323129121");
+        client.setCpf("21298421200");
+        client.setBirthday(LocalDate.parse("1999-12-31"));
+        ResponseEntity<ClientResponseModel> response = restTemplate.postForEntity(getRootURL(), client, ClientResponseModel.class);
+
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertEquals("Luiz", response.getBody().getName());
         assertEquals("luizin@gmail.com", response.getBody().getEmail());
@@ -51,64 +55,79 @@ public class ClientControllerTest {
 
     @Test
     @Order(2)
-    public void createNewClient_Returns400(){
+    public void post_NewClient_Returns400(){
         Client client = new Client();
         client.setName("John");
         client.setEmail("john@gmail232.com");
         client.setCpf("32244209122");
-
         ResponseEntity<ClientResponseModel> response = createPostRequest(client);
+
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
     }
 
     @Test
     @Order(3)
-    public void updateExistingClient_Returns200(){
-        System.out.println("Created 4th " + LocalDateTime.now());
+    public void post_ExistingCpfAndEmail_Returns400(){
+        Client client = new Client();
+        client.setName("Zico");
+        client.setEmail("luizin@gmail.com");
+        client.setPhone("9323129121");
+        client.setCpf("21298421200");
+        client.setBirthday(LocalDate.parse("1999-12-31"));
+        ResponseEntity<ClientResponseModel> response = createPostRequest(client);
 
-        ResponseEntity<ClientResponseModel> response = createPutRequest();
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+    }
+
+    @Test
+    @Order(4)
+    public void update_ExistingClient_Returns200(){
+        ClientUpdateRequestModel clientUpdateRequestModel = new ClientUpdateRequestModel();
+        clientUpdateRequestModel.setCpf("38492855521");
+        ResponseEntity<ClientResponseModel> response = createPutRequest(clientUpdateRequestModel, 1);
+
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals("384.928.555-21", response.getBody().getCpf());
     }
 
     @Test
-    @Order(4)
-    public void deleteExistingClient_Returns204(){
-        System.out.println("Created 5th" + LocalDateTime.now());
+    @Order(5)
+    public void update_Non_ExistingClient_Returns404(){
+        ClientUpdateRequestModel clientUpdateRequestModel = new ClientUpdateRequestModel();
+        clientUpdateRequestModel.setCpf("38492855521");
+        ResponseEntity<ClientResponseModel> response = createPutRequest(clientUpdateRequestModel, 2);
 
-        ResponseEntity<Object> response = createDeleteRequest();
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+    }
+
+    @Test
+    @Order(6)
+    public void deleteExistingClient_Returns204(){
+        ResponseEntity<Object> response = createDeleteRequest(1);
         assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
+    }
+
+    @Test
+    @Order(7)
+    public void detele_Non_ExistingCLient_Returns404(){
+        ResponseEntity<Object> response = createDeleteRequest(10);
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 
     private ResponseEntity<ClientResponseModel> createPostRequest(Client client){
         return restTemplate.postForEntity(getRootURL(), client, ClientResponseModel.class);
     }
 
-    private ResponseEntity<ClientResponseModel> createPutRequest(){
-        ClientUpdateRequestModel clientUpdateRequestModel = new ClientUpdateRequestModel();
-        clientUpdateRequestModel.setCpf("38492855521");
-
+    private ResponseEntity<ClientResponseModel> createPutRequest(ClientUpdateRequestModel clientUpdateRequestModel, long id){
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<ClientUpdateRequestModel> httpEntity = new HttpEntity<>(clientUpdateRequestModel, httpHeaders);
 
-        return restTemplate.exchange(getRootURL() + "/1",
+        return restTemplate.exchange(getRootURL() + "/" + id,
                 HttpMethod.PUT, httpEntity, ClientResponseModel.class);
     }
 
-    private ResponseEntity<Object> createDeleteRequest(){
-        return restTemplate.exchange(getRootURL() + "/1", HttpMethod.DELETE, null, Object.class);
-    }
-
-
-    private Client createClientObject(){
-        Client client = new Client();
-        client.setName("Luiz");
-        client.setEmail("luizin@gmail.com");
-        client.setPhone("9323129121");
-        client.setCpf("21298421200");
-        client.setBirthday(LocalDate.parse("1999-12-31"));
-
-        return client;
+    private ResponseEntity<Object> createDeleteRequest(long id){
+        return restTemplate.exchange(getRootURL() + "/" + id, HttpMethod.DELETE, null, Object.class);
     }
 }
