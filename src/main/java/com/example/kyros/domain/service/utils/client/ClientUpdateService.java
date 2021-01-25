@@ -67,12 +67,12 @@ public class ClientUpdateService extends ClientVerificationService{
 
     private void isValueDifferent(ClientUpdateRequestModel clientRequest, Client client) {
         if(inputValidator.isValueEqual(client.getEmail(), clientRequest.getEmail()))
-            throw new ClientException("O email deve ser diferente do registrado.", 400);
+            throw new ClientException("O email deve ser diferente do registrado.");
 
         if(inputValidator.isValueEqual(client.getCpf(), clientRequest.getCpf()))
-            throw new ClientException("O nº cpf deve ser diferente do registrado no Banco de dados", 400);
+            throw new ClientException("O nº cpf deve ser diferente do registrado no Banco de dados");
 
         if(inputValidator.isValueEqual(client.getPhone(), clientRequest.getPhone()))
-            throw new ClientException("O nº de telefone deve ser diferente do registrado", 400);
+            throw new ClientException("O nº de telefone deve ser diferente do registrado");
     }
 }

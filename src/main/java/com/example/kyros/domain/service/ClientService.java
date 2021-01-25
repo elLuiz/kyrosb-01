@@ -26,6 +26,12 @@ public class ClientService {
     @Autowired
     private ModelMapperConverter modelMapperConverter;
 
+    public ClientResponseModel listClient(Long id){
+        Client client = clientRepository.findById(id)
+                .orElseThrow(() -> new ClientNotFoundException("Cliente não encontrado", 404));
+        return modelMapperConverter.convertToClientResponseModel(client);
+    }
+
     public ClientResponseModel createClient(Client client){
         clientInsertionService.verifyClientInput(client);
         return getClientResponseModel(client);

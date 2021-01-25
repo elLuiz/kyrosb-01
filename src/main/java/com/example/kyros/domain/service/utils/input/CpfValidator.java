@@ -12,9 +12,9 @@ public class CpfValidator extends InputValidator implements Predicate<String> {
     @Override
     public boolean test(String cpf) {
         if(!isNCharactersLong(cpf, 11))
-            throw new CpfInvalidFormat("O cpf deve conter 11 caracteres.", 400);
+            throw new CpfInvalidFormat("O cpf deve conter 11 caracteres.");
         if(!inputMatches(cpf, REGEX))
-            throw new CpfInvalidFormat("O cpf deve conter apenas caracteres númericos.", 400);
+            throw new CpfInvalidFormat("O cpf deve conter apenas caracteres númericos.");
 
         return true;
     }

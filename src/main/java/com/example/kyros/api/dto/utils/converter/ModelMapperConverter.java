@@ -23,6 +23,6 @@ public class ModelMapperConverter {
         ResponseFormatter cpfFormatter = new CpfFormatter();
         ResponseFormatter phoneFormatter = new PhoneFormatter();
         client.setCpf(cpfFormatter.formatInput(client.getCpf()));
-        client.setPhone(phoneFormatter.formatInput(client.getPhone()));
+        client.setPhone(phoneFormatter.formatInput(client.getPhone())); 
     }
 }

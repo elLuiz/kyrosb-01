@@ -67,7 +67,7 @@ public class ClientControllerTest {
 
     @Test
     @Order(3)
-    public void post_ExistingCpfAndEmail_Returns400(){
+public void post_ExistingCpfAndEmail_Returns400(){
         Client client = new Client();
         client.setName("Zico");
         client.setEmail("luizin@gmail.com");
@@ -123,7 +123,7 @@ public class ClientControllerTest {
     public void update_Non_ExistingClient_Returns404(){
         ClientUpdateRequestModel clientUpdateRequestModel = new ClientUpdateRequestModel();
         clientUpdateRequestModel.setCpf("38492855521");
-        ResponseEntity<ClientResponseModel> response = createPutRequest(clientUpdateRequestModel, 2);
+        ResponseEntity<ClientResponseModel> response = createPutRequest(clientUpdateRequestModel, 20);
 
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }

@@ -15,9 +15,9 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
-    @GetMapping
-    public String displayClient(){
-        return "Hello, world";
+    @GetMapping("/{clientId}")
+    public ClientResponseModel listClient(@PathVariable Long clientId){
+        return clientService.listClient(clientId);
     }
 
     @PostMapping
