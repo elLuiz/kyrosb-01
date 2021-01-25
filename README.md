@@ -3,7 +3,7 @@ Desenvolvimento de uma API para gerenciamento de dados de clientes.
 
 ## Como funciona
 
-O projeto consiste de uma api contendo 3 *endpoints*, os quais são listados abaixo: 
+O projeto consiste de uma api contendo 4 *endpoints*, os quais são listados abaixo: 
 * DELETE: api/v1/client/clientId
 * POST: api/v1/client
 * PUT: api/v1/client/clientId
@@ -17,15 +17,15 @@ Como a persistência é feita em memória os dados são apagados na reincializa�
 
 Além disso, como o H2 é uma dependencia do maven, não é necessária a instalação de um banco de dados.
 
-## Execução
+## Dados
 
-
-Para o desenvolvimento do projeto, foi utilizado o Spring Boot. Portanto, há duas formas de execução: 
-
-### Dados
 `Importante: A inserção, deleção, e atualização de dados foram realizadas através do aplicativo Postman.`
 
 A inserção de dados também foi feita através do arquivo *data.sql*, que se encontra em `src/main/resources`.
+
+## Execução
+
+Para o desenvolvimento do projeto, foi utilizado o Spring Boot. Portanto, há duas formas de execução: 
 
 ### Aplicação
 - Terminal:
