@@ -12,6 +12,9 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.sql.SQLException;
 
 @Service
 @Setter
@@ -32,7 +35,7 @@ public class ClientService {
         return modelMapperConverter.convertToClientResponseModel(client);
     }
 
-    public ClientResponseModel createClient(Client client){
+    public ClientResponseModel createClient(Client client) {
         clientInsertionService.verifyClientInput(client);
         return getClientResponseModel(client);
     }
