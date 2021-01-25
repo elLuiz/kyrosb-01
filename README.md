@@ -18,9 +18,13 @@ Além disso, como o H2 é uma dependencia do maven, não é necessária a instal
 
 ## Execução
 
-`Importante: A inserção, deleção, e atualização de dados foram realizadas através do aplicativo Postman.`
 
 Para o desenvolvimento do projeto, foi utilizado o Spring Boot. Portanto, há duas formas de execução: 
+
+### Dados
+`Importante: A inserção, deleção, e atualização de dados foram realizadas através do aplicativo Postman.`
+
+A inserção de dados também foi feita através do arquivo *data.sql*, que se encontra em `src/main/resources`.
 
 ### Aplicação
 - Terminal:
