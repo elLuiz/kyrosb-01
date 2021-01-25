@@ -7,6 +7,7 @@ O projeto consiste de uma api contendo 3 *endpoints*, os quais são listados aba
 * DELETE: api/v1/client/clientId
 * POST: api/v1/client
 * PUT: api/v1/client/clientId
+* GET: api/v1/client/clientId
 
 ## Persitência de dados
 
