@@ -67,7 +67,7 @@ public class ClientControllerTest {
 
     @Test
     @Order(3)
-public void post_ExistingCpfAndEmail_Returns400(){
+    public void post_ExistingCpfAndEmail_Returns400(){
         Client client = new Client();
         client.setName("Zico");
         client.setEmail("luizin@gmail.com");
